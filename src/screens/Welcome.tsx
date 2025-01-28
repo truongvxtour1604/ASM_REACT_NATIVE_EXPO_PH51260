@@ -1,27 +1,26 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect } from 'react';
-import { Image, StyleSheet, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 export default function WelcomeScreen({ navigation }: { navigation: any }) {
     useEffect(() => {
         if (navigation) {
             const timer = setTimeout(() => {
-                navigation.replace("Login"); // Điều này sẽ chuyển đến màn hình LoginScreen
+                // Chuyển đến màn hình sign in sau 2s
+                navigation.replace("SignIn");
             }, 2000);
 
             return () => clearTimeout(timer);
         } else {
-            console.error("Navigation object is undefined!");
+            console.error("Lỗi!");
         }
     }, [navigation]);
 
     return (
         <View style={styles.container}>
-            <Image
-                source={require("../images/logo.png")}
-                style={styles.logo}
-                resizeMode="contain"
-            />
+            {/* Dòng text VXT */}
+            <Text style={styles.txtVXT}>VXT</Text>
+
             <StatusBar style="auto" />
         </View>
     );
@@ -30,12 +29,12 @@ export default function WelcomeScreen({ navigation }: { navigation: any }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#000',
         alignItems: 'center',
         justifyContent: 'center',
     },
-    logo: {
-        width: '80%',
-        height: '80%',
+    txtVXT: {
+        fontSize: 100,
+        color: '#fff'
     },
 });
