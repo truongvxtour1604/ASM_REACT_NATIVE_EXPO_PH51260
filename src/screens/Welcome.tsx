@@ -2,11 +2,11 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function WelcomeScreen({ navigation }: { navigation: any }) {
+export default function Welcome({ navigation }: { navigation: any }) {
     useEffect(() => {
         if (navigation) {
             const timer = setTimeout(() => {
-                // Chuyển đến màn hình sign in sau 2s
+                // Chuyển đến màn hình đăng nhập sau 2s
                 navigation.replace("SignIn");
             }, 2000);
 

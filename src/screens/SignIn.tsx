@@ -3,7 +3,7 @@ import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-nativ
 import Entypo from '@expo/vector-icons/Entypo';
 import { StatusBar } from 'expo-status-bar';
 
-export default function LoginScreen({ navigation }: { navigation: any }) {
+export default function SignIn({ navigation }: { navigation: any }) {
 
     return (
         <View style={styles.mainView}>
@@ -13,6 +13,7 @@ export default function LoginScreen({ navigation }: { navigation: any }) {
             </View>
 
             <View style={styles.bottomView}>
+                {/* Nút quay lại trang màn hình chào */}
                 <Entypo name="chevron-left" size={50} color="#fff" style={styles.iconStyle} onPress={() => navigation.navigate('Welcome')} />
                 {/* Dòng text chào mừng quay trở lại */}
                 <Text style={styles.txtWelcomeBack}>
@@ -25,10 +26,11 @@ export default function LoginScreen({ navigation }: { navigation: any }) {
                     {/* Ô nhập mật khẩu */}
                     <TextInput placeholder={"Password*"} placeholderTextColor={"#fff"} secureTextEntry={true} style={styles.textInput} />
                     {/* Nút đăng nhập */}
-                    <TouchableOpacity style={styles.btnSignIn}>
+                    <TouchableOpacity style={styles.btnSignIn} onPress={() => navigation.navigate('Home')}>
                         <Text style={styles.txtSignIn}>Sign in</Text>
                     </TouchableOpacity>
                 </View>
+                {/* Dòng text chuyển sang màn hình đăng ký */}
                 <TouchableOpacity style={styles.btnSignUp} onPress={() => navigation.navigate('SignUp')}>
                     <Text style={styles.txtSignUp}>Don't have an account? Sign up</Text>
                 </TouchableOpacity>

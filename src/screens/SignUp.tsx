@@ -3,7 +3,7 @@ import { View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView } from 
 import Entypo from '@expo/vector-icons/Entypo';
 import { StatusBar } from 'expo-status-bar';
 
-export default function LoginScreen({ navigation }: { navigation: any }) {
+export default function SignUp({ navigation }: { navigation: any }) {
 
     return (
         <View style={styles.mainView}>
