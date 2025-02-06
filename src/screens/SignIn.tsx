@@ -1,36 +1,56 @@
-import React from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import Entypo from '@expo/vector-icons/Entypo';
 import { StatusBar } from 'expo-status-bar';
 
 export default function SignIn({ navigation }: { navigation: any }) {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleSignIn = () => {
+        if (email === 'truongvxph51260@gmail.com' && password === 'Tuatruong2305') {
+            navigation.reset({
+                index: 0,
+                // Đặt Home làm màn hình duy nhất trong stack để ngăn quay lại màn hình trước đó
+                routes: [{ name: 'Home' }],
+            });
+        } else {
+            Alert.alert('Lỗi đăng nhập', 'Email hoặc mật khẩu không đúng!');
+        }
+    };
 
     return (
         <View style={styles.mainView}>
             <View style={styles.topView}>
-                {/* Dòng text VXT */}
                 <Text style={styles.txtVXT}>VXT</Text>
             </View>
 
             <View style={styles.bottomView}>
-                {/* Nút quay lại trang màn hình chào */}
                 <Entypo name="chevron-left" size={50} color="#fff" style={styles.iconStyle} onPress={() => navigation.navigate('Welcome')} />
-                {/* Dòng text chào mừng quay trở lại */}
                 <Text style={styles.txtWelcomeBack}>
                     Welcome{'\n'}
                     back
                 </Text>
                 <View style={styles.formView}>
-                    {/* Ô nhập email */}
-                    <TextInput placeholder={"Email address*"} placeholderTextColor={"#fff"} style={styles.textInput} />
-                    {/* Ô nhập mật khẩu */}
-                    <TextInput placeholder={"Password*"} placeholderTextColor={"#fff"} secureTextEntry={true} style={styles.textInput} />
-                    {/* Nút đăng nhập */}
-                    <TouchableOpacity style={styles.btnSignIn} onPress={() => navigation.navigate('Home')}>
+                    <TextInput
+                        placeholder="Email address*"
+                        placeholderTextColor="#fff"
+                        style={styles.textInput}
+                        value={email}
+                        onChangeText={setEmail}  // Lưu email vào state
+                    />
+                    <TextInput
+                        placeholder="Password*"
+                        placeholderTextColor="#fff"
+                        secureTextEntry={true}
+                        style={styles.textInput}
+                        value={password}
+                        onChangeText={setPassword}  // Lưu mật khẩu vào state
+                    />
+                    <TouchableOpacity style={styles.btnSignIn} onPress={handleSignIn}>
                         <Text style={styles.txtSignIn}>Sign in</Text>
                     </TouchableOpacity>
                 </View>
-                {/* Dòng text chuyển sang màn hình đăng ký */}
                 <TouchableOpacity style={styles.btnSignUp} onPress={() => navigation.navigate('SignUp')}>
                     <Text style={styles.txtSignUp}>Don't have an account? Sign up</Text>
                 </TouchableOpacity>
@@ -52,7 +72,6 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '30%',
         backgroundColor: '#fff',
-        display: 'flex',
         justifyContent: 'center',
         alignItems: 'center'
     },
@@ -80,8 +99,6 @@ const styles = StyleSheet.create({
     },
     formView: {
         width: '100%',
-        display: 'flex',
-        flexDirection: 'column',
         alignItems: 'center',
         marginTop: 20
     },
@@ -101,7 +118,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderRadius: 10,
         marginTop: 20,
-        display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -111,7 +127,6 @@ const styles = StyleSheet.create({
     },
     btnSignUp: {
         width: '100%',
-        display: 'flex',
         alignItems: 'center',
         marginTop: 20
     },

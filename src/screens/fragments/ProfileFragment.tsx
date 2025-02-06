@@ -3,30 +3,30 @@ import { View, TextInput, StyleSheet, TouchableOpacity, Image, Text } from 'reac
 import Entypo from '@expo/vector-icons/Entypo';
 import { StatusBar } from 'expo-status-bar';
 
-export default function Profile({ navigation }: { navigation: any }) {
+export default function ProfileFragment({ navigation }: { navigation: any }) {
 
     return (
         <View style={styles.container}>
             <View style={styles.header}>
                 <Image
-                    source={{ uri: "https://via.placeholder.com/100" }}
+                    source={require('../../images/vxt.jpg')}
                     style={styles.avatar}
                 />
-                <Text style={styles.name}>Nguyễn Văn A</Text>
-                <Text style={styles.email}>nguyenvana@example.com</Text>
+                <Text style={styles.name}>Vũ Xuân Trường</Text>
+                <Text style={styles.email}>truongvxph51260@gmail.com</Text>
             </View>
             <View style={styles.section}>
                 <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>Chỉnh sửa hồ sơ</Text>
+                    <Text style={styles.buttonText}>Edit Profile</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.buttonOutline}>
-                    <Text style={styles.buttonTextOutline}>Đơn hàng của tôi</Text>
+                    <Text style={styles.buttonTextOutline}>My Orders</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.buttonOutline}>
-                    <Text style={styles.buttonTextOutline}>Cài đặt</Text>
+                    <Text style={styles.buttonTextOutline}>Settings</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.logout}>
-                    <Text style={styles.logoutText}>Đăng xuất</Text>
+                <TouchableOpacity style={styles.logout} onPress={() => navigation.navigate('SignIn')}>
+                    <Text style={styles.logoutText}>Log Out</Text>
                 </TouchableOpacity>
             </View>
 
@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     header: {
         alignItems: "center",
         marginBottom: 20,
+        marginTop: 30
     },
     avatar: {
         width: 100,
@@ -59,7 +60,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
     },
     email: {
-        color: "#000",
+        color: "#888",
         fontSize: 16,
         marginTop: 5,
     },

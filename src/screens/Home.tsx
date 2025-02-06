@@ -1,25 +1,70 @@
 import React from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
-import Entypo from '@expo/vector-icons/Entypo';
-import { StatusBar } from 'expo-status-bar';
+import { StyleSheet } from 'react-native';
+import { Entypo } from '@expo/vector-icons';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import HomeFragment from './fragments/HomeFragment';
+import FavoritesFragment from './fragments/FavoritesFragment';
+import ProfileFragment from './fragments/ProfileFragment';
+import CartFragment from './fragments/CartFragment';
 
-export default function Home({ navigation }: { navigation: any }) {
+const Tab = createBottomTabNavigator();
+const Drawer = createDrawerNavigator();
 
+function BottomTabs() {
     return (
-        <View style={styles.mainView}>
-            <Text>Home</Text>
-            
-            <StatusBar style="auto" />
-        </View>
+        <Tab.Navigator
+            screenOptions={{
+                headerShown: false,
+                tabBarStyle: styles.bottomNav,
+                tabBarActiveTintColor: '#FF6C44',
+            }}
+        >
+            <Tab.Screen
+                name="Home"
+                component={HomeFragment}
+                options={{
+                    tabBarIcon: ({ color }) => <Entypo name="home" size={24} color={color} />,
+                }}
+            />
+            <Tab.Screen
+                name="Cart"
+                component={CartFragment}
+                options={{
+                    tabBarIcon: ({ color }) => <Entypo name="shopping-cart" size={24} color={color} />,
+                }}
+            />
+            <Tab.Screen
+                name="Favorites"
+                component={FavoritesFragment}
+                options={{
+                    tabBarIcon: ({ color }) => <Entypo name="heart" size={24} color={color} />,
+                }}
+            />
+            <Tab.Screen
+                name="Profile"
+                component={ProfileFragment}
+                options={{
+                    tabBarIcon: ({ color }) => <Entypo name="user" size={24} color={color} />,
+                }}
+            />
+        </Tab.Navigator>
+    );
+}
+
+export default function Home() {
+    return (
+        <Drawer.Navigator screenOptions={{ headerShown: false }}>
+            <Drawer.Screen name="Main" component={BottomTabs} />
+        </Drawer.Navigator>
     );
 }
 
 const styles = StyleSheet.create({
-    mainView: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#fff'
-    },
+    bottomNav: {
+        backgroundColor: '#000',
+        borderTopWidth: 0,
+        paddingBottom: 50,
+        paddingTop: 10
+    }
 });
