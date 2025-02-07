@@ -8,7 +8,7 @@ export default function SignIn({ navigation }: { navigation: any }) {
     const [password, setPassword] = useState('');
 
     const handleSignIn = () => {
-        if (email === 'truongvxph51260@gmail.com' && password === 'Tuatruong2305') {
+        if (email === '' && password === '') {
             navigation.reset({
                 index: 0,
                 // Đặt Home làm màn hình duy nhất trong stack để ngăn quay lại màn hình trước đó
